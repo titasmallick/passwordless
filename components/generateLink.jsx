@@ -1,5 +1,5 @@
 "use client";
-export const runtime = 'nodejs'
+export const runtime = "nodejs";
 import {
   Input,
   Button,
@@ -10,21 +10,26 @@ import {
   CardFooter,
   Divider,
 } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import crypto from "crypto";
 import { useSearchParams } from "next/navigation";
 import { encrypt, decrypt } from "@/components/encrypt";
 
 const GenerateLink = () => {
+  const router = useRouter();
   const [presigned, setPresigned] = useState(false);
+  const [hashedLink, setHashedLink] = useState("");
+  const [formData, setFormData] = useState({});
   const searchParams = useSearchParams();
+  const urlUser = searchParams.get("u");
+  const encodedUrlPass = searchParams.get("p");
 
-  useEffect(() => {
+  const checkLogin = () => {
     const expiryDuration = 5; // Expiry time in minutes
     const salt = process.env.NEXT_PUBLIC_SALT;
-    const urlUser = searchParams.get("u");
-    const encodedUrlPass = searchParams.get("p");
-    
+
     // Check if the query parameters are undefined
     if (!urlUser || !encodedUrlPass) {
       console.log("URL parameters 'u' or 'p' are undefined.");
@@ -32,9 +37,7 @@ const GenerateLink = () => {
     }
     decrypt(encodedUrlPass).then((res) => {
       // Decoding from base64
-      const decodedUrlPass = Buffer.from(res, "base64").toString(
-        "ascii"
-      );
+      const decodedUrlPass = Buffer.from(res, "base64").toString("ascii");
       // Splitting the decoded string to extract the hash and the timestamp
       const [preHashedPass, hashTimestamp] = decodedUrlPass.split(".");
       const userName = urlUser;
@@ -58,11 +61,12 @@ const GenerateLink = () => {
         setPresigned(false);
       }
     });
+  };
 
-  }, []);
+  useEffect(() => {
+    checkLogin();
+  }, [presigned || hashedLink || formData]);
 
-  const [formData, setFormData] = useState({});
-  const [hashedLink, setHashedLink] = useState("");
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value.replace(/\s+/g, "") });
@@ -87,6 +91,8 @@ const GenerateLink = () => {
       const serverEncrypted = await encrypt(encodedHash);
       setHashedLink(serverEncrypted);
       decrypt(serverEncrypted);
+      setPresigned(true);
+      router.replace(`/?u=${formData.username}&p=${serverEncrypted}`);
     }
   };
 
@@ -133,9 +139,17 @@ const GenerateLink = () => {
           This user is NOT using a pre-signed link
         </p>
       ) : (
-        <p className="text-sm italic text-gray-500 w-full text-center">
-          This user is using a pre-signed link
-        </p>
+        <div className="w-full text-center">
+          <p className="text-sm italic text-gray-500">
+            This user is using a pre-signed link
+          </p>
+          <Link
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 inline-block mt-2"
+            href={`/protected?u=${urlUser}&p=${encodedUrlPass}`}
+          >
+            Visit the protected route
+          </Link>
+        </div>
       )}
     </section>
   );

@@ -1,40 +1,67 @@
-# Next.js & NextUI Template
+# Passwordless || Temporary Access Links Generator
 
-This is a template for creating applications using Next.js 13 (app directory) and NextUI (v2).
+This project aims to provide a simple and secure way to generate temporary access links that can be shared with users for a specified duration of time. These links can be used to grant access to certain authenticated actions within the application without requiring a traditional username and password.
+
+## Features
+
+- Generate temporary access links based on combinations of username and hash.
+- Links are valid only for a specified duration of time.
+- No need for traditional passwords, enhancing security and convenience.
+- Suitable for scenarios where unique user authentication is not necessary, such as feedback forms or limited-time access to certain features.
 
 ## Technologies Used
 
-- [Next.js 13](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+- Next.js 14
+- Node.js `crypto` module for generating hashes
+- Middleware functionality in Next.js for handling requests
 
-## How to Use
+## Setup Instructions
 
+1. Clone the repository to your local machine:
 
-### Use the template with create-next-app
+   ```bash
+   git clone https://github.com/titasmallick/passwordless.git```
+2. Install dependencies:
 
-To create a new project based on this template using `create-next-app`, run the following command:
+    ```bash
+    npm install
+    ```
+    Configure your environment variables as needed. You may need to set up environment variables for secret keys, token expiration durations, etc.
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+3. Run the application:
 
-### Install dependencies
+    ```bash
+    npm run dev
+    ```
+    Access the application in your browser at http://localhost:3000.
 
-```bash
-npm install
-```
+# Usage
+To generate a temporary access link, use the provided API endpoint or functionality within the application.
+Share the generated link with the intended users.
+Users can access the link within the specified duration to perform authenticated actions within the application.
+# GenerateLink Component
 
-### Run the development server
+The `GenerateLink` component is a React component used to generate pre-signed links for temporary access to authenticated actions within the application.
 
-```bash
-npm run dev
-```
+<!-- ## Usage
 
-## License
+To use the `GenerateLink` component, import it into your React application and include it in your component tree. Here's an example of how you can use it:
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+```jsx
+import GenerateLink from '@/components/GenerateLink';
+
+const App = () => {
+  return (
+    <div>
+      <GenerateLink />
+    </div>
+  );
+};
+
+export default App;
+``` -->
+# Contributing
+Contributions are welcome! If you have any suggestions, feature requests, or bug reports, please open an issue or submit a pull request.
+
+# License
+This project is licensed under the MIT License.
