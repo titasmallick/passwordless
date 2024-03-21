@@ -1,5 +1,6 @@
 'use server'
 import crypto from "crypto";
+export const runtime = 'nodejs'
 
 // Function to derive a key from a password using PBKDF2
 function deriveKey(password, salt) {
