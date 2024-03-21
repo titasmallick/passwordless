@@ -122,7 +122,7 @@ const GenerateLink = () => {
           )}
           {!hashedLink && (
             <p className="text-sm italic text-gray-500">
-              Your link will be generated here.
+              Your link will be generated here. It will be valid for 5 minutes.
             </p>
           )}
         </CardFooter>
