@@ -99,7 +99,7 @@ export async function middleware(request) {
       return response;
     } else {
       // return NextResponse.redirect(new URL("/", request.url));
-      const response = NextResponse.redirect(new URL("/", request.url));
+      const response = NextResponse.replace(new URL("/", request.url));
       response.cookies.set('userIsLoggedin', false, {
         path: '/', // Specify the path for the cookie
         maxAge: 600, // Max age in seconds (10 minutes)

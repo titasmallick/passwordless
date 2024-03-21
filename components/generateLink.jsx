@@ -96,6 +96,13 @@ const GenerateLink = () => {
     }
   };
 
+  const handleLogout = () => {
+    setPresigned(false);
+    setHashedLink(false);
+    router.replace("/");
+    // router.refresh();
+  };
+
   return (
     <section className="w-full p-5">
       <Card className="my-1 mx-auto md:mt-0 md:flex-nowrap md:justify-center md:items-center w-full md:w-[400px] p-8">
@@ -133,12 +140,12 @@ const GenerateLink = () => {
           )}
         </CardFooter>
       </Card>
-
-      {!presigned ? (
+      {!presigned && (
         <p className="text-sm italic text-gray-500 w-full text-center">
           This user is NOT using a pre-signed link
         </p>
-      ) : (
+      )}
+      {presigned && (
         <div className="w-full text-center">
           <p className="text-sm italic text-gray-500">
             This user is using a pre-signed link
@@ -149,6 +156,10 @@ const GenerateLink = () => {
           >
             Visit the protected route
           </Link>
+          <br />
+          <Button onClick={handleLogout} className="my-2" color="danger">
+            Unprotect
+          </Button>
         </div>
       )}
     </section>

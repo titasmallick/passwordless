@@ -8,19 +8,11 @@ export const siteConfig = {
 			label: "Home",
 			href: "/",
 		},
-    {
-      label: "UnProtected",
-      href: "/protected",
-    },
 	],
 	navMenuItems: [
 		{
 			label: "Home",
 			href: "/home",
-		},
-		{
-			label: "UnProtected",
-			href: "/protected",
 		},
 	],
 	links: {
