@@ -12,6 +12,7 @@ export async function middleware(request) {
 
     
 
+    // const staticDataResponse = await fetch(`http://localhost:3000/decrypter`, {
     const staticDataResponse = await fetch(`https://passwordless-six.vercel.app/decrypter`, {
       method: "POST", // Specify POST method
       headers: {
@@ -19,7 +20,7 @@ export async function middleware(request) {
       },
       body: JSON.stringify({
         encryptedData: getPass,
-      }),
+      }),  cache: 'no-store' 
     });
 
     const responseData = await staticDataResponse.json(); // Wait for the JSON response

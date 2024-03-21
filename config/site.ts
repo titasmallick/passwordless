@@ -9,7 +9,7 @@ export const siteConfig = {
 			href: "/",
 		},
     {
-      label: "Protected",
+      label: "UnProtected",
       href: "/protected",
     },
 	],
@@ -19,7 +19,7 @@ export const siteConfig = {
 			href: "/home",
 		},
 		{
-			label: "Protected",
+			label: "UnProtected",
 			href: "/protected",
 		},
 	],
