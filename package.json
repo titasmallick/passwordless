@@ -1,6 +1,6 @@
 {
-  "name": "next-app-template",
-  "version": "0.0.1",
+  "name": "passwordless",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,6 +15,7 @@
     "@nextui-org/kbd": "2.0.25",
     "@nextui-org/link": "2.0.26",
     "@nextui-org/navbar": "2.0.27",
+    "@nextui-org/react": "^2.2.10",
     "@nextui-org/snippet": "2.0.30",
     "@nextui-org/switch": "2.0.25",
     "@nextui-org/system": "2.0.15",
@@ -28,9 +29,9 @@
     "clsx": "^2.0.0",
     "eslint": "8.48.0",
     "eslint-config-next": "14.0.2",
-    "framer-motion": "^10.16.4",
+    "framer-motion": "^10.18.0",
     "intl-messageformat": "^10.5.0",
-    "next": "14.0.2",
+    "next": "^14.1.4",
     "next-themes": "^0.2.1",
     "postcss": "8.4.31",
     "react": "18.2.0",
