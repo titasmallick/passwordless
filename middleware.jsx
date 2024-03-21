@@ -12,7 +12,7 @@ export async function middleware(request) {
 
     
 
-    const staticDataResponse = await fetch(`http://localhost:3000/decrypter`, {
+    const staticDataResponse = await fetch(`https://passwordless-six.vercel.app/decrypter`, {
       method: "POST", // Specify POST method
       headers: {
         "Content-Type": "application/json", // Specify content type as JSON

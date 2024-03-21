@@ -117,7 +117,7 @@ const GenerateLink = () => {
         <CardFooter>
           {hashedLink && (
             <Snippet className="w-full" symbol="">
-              <span className="my-2 italic overflow-hidden whitespace-pre-line break-all">{`http://localhost:3000/protected?u=${formData.username}&p=${hashedLink}`}</span>
+              <span className="my-2 italic overflow-hidden whitespace-pre-line break-all">{`https://passwordless-six.vercel.app/protected?u=${formData.username}&p=${hashedLink}`}</span>
             </Snippet>
           )}
           {!hashedLink && (
